@@ -74,7 +74,7 @@ for i in range(x.shape[1]):
 class_count = np.bincount(y)
 
 if class_count.max() / class_count.sum() > 0.7:
-    print('Data set is imblanced')
+    print('Data set is imbalanced')
     
 else:
     print('Data set is not imbalnced')
@@ -87,20 +87,12 @@ x_train, x_test, y_train, y_test = train_test_split(x_norm2,y,test_size=0.15,ran
 
 #%% fit our model
 
-from sklearn.tree import DecisionTreeRegressor
-
-dt = DecisionTreeRegressor()
-
-dt.fit(x_train,y_train)
-
-y_pred = dt.predict(x_test)
-
 from sklearn.ensemble import RandomForestRegressor
 
 rf = RandomForestRegressor(n_estimators=100,random_state=7)
 
 rf.fit(x_test,y_test)
-y_pred2 = rf.predict(x_test)
+y_pred = rf.predict(x_test)
 
 rf.score(x_test,y_test)
 
@@ -108,7 +100,7 @@ rf.score(x_test,y_test)
 # R-Aquared
 from sklearn.metrics import r2_score
 
-r2 = r2_score(y_test,y_pred2)
+r2 = r2_score(y_test,y_pred)
 
 # Adjusted R-Squared
 
